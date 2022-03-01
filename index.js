@@ -1,12 +1,11 @@
 const express = require('express');
-const res = require('express/lib/response');
 const app = express();
 const dotenv = require('dotenv').config();
 
 const port = process.env.PORT;
 // 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 // app.use(authRoute);
 
 const customExpress = Object.create(express().response, {
