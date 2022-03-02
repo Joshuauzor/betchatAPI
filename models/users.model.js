@@ -1,74 +1,48 @@
-const { Model, DataTypes, Op } = require('sequelize');
+const { Model, Sequelize, Op } = require('sequelize');
 const { seq: DB } = require('../sequelize');
 class Users extends Model {
 
 };
 
 Users.init({
-    agentId: {
-        type: DataTypes.INTEGER,
+    id: {
+        primaryKey: true,
         unique: true,
         autoIncrement: true,
-        primaryKey: true
+        type: Sequelize.INTEGER
     },
     uuid: {
-        type: DataTypes.UUID,
+        type: Sequelize.UUID,
         unique: true,
-        defaultValue: DataTypes.UUIDV4
-    },
-    mdaID: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    name: {
-        type: DataTypes.STRING
-    },
-    address: {
-        type: DataTypes.STRING
-    },
-    phone: {
-        type: DataTypes.STRING
-    },
-    username: {
-        type: DataTypes.STRING
-    },
-    name: {
-        type: DataTypes.STRING
+        defaultValue: Sequelize.UUIDV4
     },
     email: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: Sequelize.STRING,
+        unique: true,
     },
-    password: {
-        type: DataTypes.STRING
+    firstName: {
+        type: Sequelize.STRING,
+    },
+    lastName: {
+        type: Sequelize.STRING
+    },
+    address: {
+        type: Sequelize.STRING
+    },
+    interests: {
+        type: Sequelize.STRING
     },
     userType: {
-        type: DataTypes.STRING
+        type: Sequelize.STRING
     },
-    role: {
-        type: DataTypes.STRING
+    password: {
+        type: Sequelize.STRING
     },
-    organization: {
-        type: DataTypes.STRING
+    createdAt: {
+        type: Sequelize.DATE
     },
-    status: {
-        type: DataTypes.STRING
-    },
-    balance: {
-        type: DataTypes.STRING
-    },
-    lastsync: {
-        type: DataTypes.STRING
-    },
-    supervisorId: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    dateCreated: {
-        type: DataTypes.STRING
-    },
-    loggedIn: {
-        type: DataTypes.STRING,
+    createdAt: {
+        type: Sequelize.DATE
     }
 }, {
     tableName: 'users',
