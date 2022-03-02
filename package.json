@@ -4,6 +4,7 @@
     "description": "social media platform for users",
     "main": "index.js",
     "scripts": {
+        "start": "node index",
         "test": "test",
         "migrate:create": "sequelize-cli migration:generate --name",
         "migrate:run": "sequelize-cli db:migrate",
