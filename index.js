@@ -3,7 +3,6 @@ const app = express();
 const dotenv = require('dotenv').config();
 
 const port = process.env.PORT;
-// 
 const authRoute = require('./routes/auth.routes');
 
 app.use(express.json());
@@ -42,6 +41,22 @@ const customExpress = Object.create(express().response, {
 });
 
 app.response = Object.create(customExpress);
+
+app.use((err, req, res, next) => {
+    console.error(err);
+
+    if (err.type && err.type === 'entity.parse.failed') {
+        res.status(400).errorMessage('Invalid JSON payload passed.');
+    } else if (err.toString() === '[object Object]') {
+        try {
+            res.status(400).error(err);
+        } catch {
+            res.status(500).error('Server error');
+        }
+    } else {
+        res.status(400).error(err.toString());
+    }
+});
 
 app.get('/online', (req, res) => {
     res.data('app is online');

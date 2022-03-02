@@ -1,6 +1,3 @@
-const tableName = 'datalite_ticket_limit';
-
-
 module.exports = {
     up: async(queryInterface, Sequelize) => {
         await Promise.all([

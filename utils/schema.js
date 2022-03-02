@@ -4,7 +4,7 @@ module.exports = class schema {
     // login schema
     static get loginSchema() {
         return Joi.object({
-            username: Joi.string().min(3).required(),
+            email: Joi.string().email().required(),
             password: Joi.string().min(5).required(),
         });
     }
@@ -12,13 +12,13 @@ module.exports = class schema {
     // register schema 
     static get registerSchema() {
         return Joi.object({
-            email: Joi.string().allow('', null).email(),
+            email: Joi.string().email().required(),
             firstName: Joi.string().trim().required(),
             lastName: Joi.string().trim().required(),
             address: Joi.string().required(),
             phone: Joi.string().length(11).required(),
             interests: Joi.string().required(),
-            userType: Joi.string().valid('user', 'admin').required(),
+            userType: Joi.string().valid('user', 'admin').allow('', null),
             password: Joi.string().min(5).required(),
         });
     }

@@ -1,7 +1,31 @@
 const { Model, Sequelize, Op } = require('sequelize');
 const { seq: DB } = require('../sequelize');
-class Users extends Model {
+const bcrypt = require("bcryptjs");
+const _ = require('lodash');
 
+class Users extends Model {
+    static async verifyEmail(data) {
+        let user = await this.findOne({ where: { email: data.email } });
+        if (!user)
+            return Promise.reject('incorrect email and/or password');
+
+        const comparePassword = await bcrypt.compare(data.password, user.password);
+        if (!comparePassword)
+            return Promise.reject('incorrect email and/or password');
+
+        user = _.omit({...user.toJSON() }, ['password']);
+        return user;
+    }
+
+    static async createUser(data) {
+        const isUnqiue = await this.findOne({ where: { email: data.email } });
+        if (isUnqiue)
+            return Promise.reject('User already exist');
+        const user = _.omit(data, data.password);
+        const password = await bcrypt.hash(data.password, 8);
+        await this.create({...user, password });
+        return Promise.resolve('User created successfully');
+    }
 };
 
 Users.init({
@@ -42,7 +66,9 @@ Users.init({
     createdAt: {
         type: Sequelize.DATE
     },
-
+    updatedAt: {
+        type: Sequelize.DATE
+    },
 }, {
     tableName: 'users',
     underscored: false,
