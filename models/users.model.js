@@ -54,7 +54,7 @@ Users.init({
         type: Sequelize.STRING
     },
     interests: {
-        type: Sequelize.STRING
+        type: Sequelize.JSON
     },
     userType: {
         type: Sequelize.STRING,

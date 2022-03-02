@@ -11,7 +11,7 @@ module.exports = class Auth {
      * 
      * @param {object} req 
      * @param {string} res 
-    //  */
+     */
     static async signup(req, res) {
         let user = await UserM.createUser(req.body);
         res.data(user);

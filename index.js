@@ -5,12 +5,14 @@ const dotenv = require('dotenv').config();
 const port = process.env.PORT;
 const authRoute = require('./routes/auth.routes');
 const postRoute = require('./routes/posts.routes');
+const interestRoute = require('./routes/interest.routes');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(authRoute);
 app.use(postRoute);
+app.use(interestRoute);
 
 const customExpress = Object.create(express().response, {
     data: {

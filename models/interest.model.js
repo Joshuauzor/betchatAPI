@@ -1,11 +1,11 @@
 const { Model, Sequelize, Op } = require('sequelize');
 const { seq: DB } = require('../sequelize');
 
-class Posts extends Model {
+class Interest extends Model {
     // write additional logic
 };
 
-Posts.init({
+Interest.init({
     id: {
         primaryKey: true,
         unique: true,
@@ -17,13 +17,10 @@ Posts.init({
         unique: true,
         defaultValue: Sequelize.UUIDV4
     },
-    post: {
-        type: Sequelize.STRING,
+    interest: {
+        type: Sequelize.TEXT,
     },
-    userId: {
-        type: Sequelize.UUID,
-        allowNull: false,
-    },
+
     createdAt: {
         type: Sequelize.DATE
     },
@@ -31,10 +28,10 @@ Posts.init({
         type: Sequelize.DATE
     },
 }, {
-    tableName: 'posts',
+    tableName: 'interest',
     underscored: false,
     timestamps: true,
     sequelize: DB,
 });
 
-module.exports = Posts;
+module.exports = Interest;

@@ -17,13 +17,22 @@ module.exports = class schema {
             lastName: Joi.string().trim().required(),
             address: Joi.string().required(),
             phone: Joi.string().length(11).required(),
-            interests: Joi.string().required(),
+            interests: Joi.array().items({
+                id: Joi.number().integer().required(),
+                interest: Joi.string().required(),
+            }),
             userType: Joi.string().valid('user', 'admin').allow('', null),
             password: Joi.string().min(5).required(),
         });
     }
 
     static get postSchema() {
+        return Joi.object({
+            post: Joi.string().required()
+        })
+    }
+
+    static get interestSchema() {
         return Joi.object({
             interest: Joi.string().required()
         })
