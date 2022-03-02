@@ -22,4 +22,10 @@ module.exports = class schema {
             password: Joi.string().min(5).required(),
         });
     }
+
+    static get postSchema() {
+        return Joi.object({
+            interest: Joi.string().required()
+        })
+    }
 }
