@@ -5,8 +5,7 @@ const schema = require('../utils/schema')
 const token = require('../utils/verifyToken');
 
 
-// @desc login for agent 
-router.route('/signup')
-    .post(validator(schema.loginSchema), $auth.signup)
+router.route('/auth/signup')
+    .post(validator(schema.registerSchema), $auth.signup)
 
 module.exports = router;

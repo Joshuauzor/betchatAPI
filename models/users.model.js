@@ -33,7 +33,8 @@ Users.init({
         type: Sequelize.STRING
     },
     userType: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'user'
     },
     password: {
         type: Sequelize.STRING
@@ -41,9 +42,7 @@ Users.init({
     createdAt: {
         type: Sequelize.DATE
     },
-    createdAt: {
-        type: Sequelize.DATE
-    }
+
 }, {
     tableName: 'users',
     underscored: false,

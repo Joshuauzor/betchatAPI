@@ -13,6 +13,16 @@ module.exports = class Auth {
      * @param {string} res 
      */
     static async signup(req, res) {
-
+        const userDetails = {
+            firstName: req.body.firstName,
+            lastName: req.body.firstName,
+            email: req.body.email,
+            address: req.body.address,
+            interests: req.body.interests,
+        }
+        const password = await bcrypt.hash(req.body.passwrod, 8);
+        await UserM.create({...userDetails, password });
+        return res.data('User created successfully');
     }
+
 }

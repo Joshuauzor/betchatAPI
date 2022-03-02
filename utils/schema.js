@@ -13,7 +13,7 @@ module.exports = class schema {
     static get registerSchema() {
         return Joi.object({
             email: Joi.string().allow('', null).email(),
-            firstName: Joi.string().trim(),
+            firstName: Joi.string().trim().required(),
             lastName: Joi.string().trim().required(),
             address: Joi.string().required(),
             phone: Joi.string().length(11).required(),

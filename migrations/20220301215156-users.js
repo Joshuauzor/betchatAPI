@@ -41,9 +41,6 @@ module.exports = {
                 createdAt: {
                     type: Sequelize.DATE
                 },
-                createdAt: {
-                    type: Sequelize.DATE
-                },
             }),
         ]);
     },
