@@ -6,6 +6,7 @@ const _ = require('lodash');
 class Users extends Model {
     static async verifyEmail(data) {
         let user = await this.findOne({ where: { email: data.email } });
+
         if (!user)
             return Promise.reject('incorrect email and/or password');
 
