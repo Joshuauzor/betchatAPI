@@ -13,7 +13,7 @@ let verifyToken = (req, res, next) => {
         // next middleware
         jwt.verify(req.token, process.env.JWT_SECRET_TOKEN, function(err, result) {
             if (err)
-                res.status(500).json({ "error": "Unauthorised request" });
+                return res.error('Unauthorised request');
             req.user = result.user;
             next();
         });

@@ -3,7 +3,6 @@ const chaiHttp = require('chai-http');
 const should = chai.should();
 chai.use(chaiHttp);
 const server = require('../index');
-// module.exports = app.listen(3001);
 
 // test login
 describe('/authentication check', () => {
@@ -33,7 +32,7 @@ describe('/authentication check', () => {
             let data = {
                 firstName: "Joshua",
                 lastName: "Uzor",
-                email: "Joshuatest@gmail.com",
+                email: "Joshuatest1@gmail.com",
                 address: "9 Olubisi close Lagos",
                 phone: "08160905978",
                 interests: [{
